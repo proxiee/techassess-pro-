@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: techassess-pro
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+    disk:
+      name: exam-data
+      mountPath: /opt/render/project/src/uploads
+      sizeGB: 1

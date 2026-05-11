@@ -1,0 +1,14 @@
+{
+  "name": "techassess-pro",
+  "version": "1.0.0",
+  "description": "Professional online exam platform with proctoring",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5"
+  }
+}
