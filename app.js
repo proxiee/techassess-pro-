@@ -556,41 +556,6 @@
       console.warn("[Proctor] Server upload failed:", err);
     }
 
-    // Build results UI
-    const stats = $("#results-stats");
-    stats.innerHTML = `
-      <div class="result-stat"><div class="stat-label">MCQ Score</div><div class="stat-value">${correctMCQ} / ${mcqQuestions.length}</div></div>
-      <div class="result-stat"><div class="stat-label">Coding Submitted</div><div class="stat-value">${programmingAnswered} / ${programmingQuestions.length}</div></div>
-      <div class="result-stat"><div class="stat-label">Time Taken</div><div class="stat-value">${mins}m ${secs}s</div></div>
-      <div class="result-stat"><div class="stat-label">Warnings</div><div class="stat-value" style="color:${state.warnings.length > 0 ? "var(--danger)" : "var(--success)"}">${state.warnings.length}</div></div>
-    `;
-
-    // Build proctoring log
-    const log = $("#proctoring-log");
-    if (state.warnings.length > 0) {
-      log.innerHTML = "<h3>Proctoring Summary</h3>" +
-        state.warnings
-          .map((w) => {
-            const t = w.time;
-            const ts = `${String(t.getHours()).padStart(2, "0")}:${String(t.getMinutes()).padStart(2, "0")}:${String(t.getSeconds()).padStart(2, "0")}`;
-            return `<div class="log-entry"><span class="log-time">${ts}</span><span class="log-type warning">Warning</span><span>${escapeHtml(w.message)}</span></div>`;
-          })
-          .join("");
-    } else {
-      log.innerHTML = '<h3>Proctoring Summary</h3><p style="color:var(--success);font-size:0.9rem;margin-top:8px;">✅ No violations detected during the exam session.</p>';
-    }
-
-    // Recording download link on results page
-    if (recordingBlob && recordingBlob.size > 0) {
-      const recordingInfo = document.createElement("div");
-      recordingInfo.className = "recording-saved-notice";
-      recordingInfo.innerHTML = `
-        <p style="color:var(--text-secondary);font-size:0.85rem;margin-top:16px;">
-          📹 Your proctoring session has been recorded and saved for review.
-        </p>`;
-      log.appendChild(recordingInfo);
-    }
-
     // Stop media
     if (state.mediaStream) {
       state.mediaStream.getTracks().forEach((t) => t.stop());
