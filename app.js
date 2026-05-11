@@ -87,9 +87,9 @@
       $("#video-placeholder").classList.add("hidden");
 
       // Update permission status
-      $("#perm-camera .perm-status").textContent = "✅";
+      $("#perm-camera .perm-status").textContent = "OK";
       $("#perm-camera .perm-status").classList.add("granted");
-      $("#perm-mic .perm-status").textContent = "✅";
+      $("#perm-mic .perm-status").textContent = "OK";
       $("#perm-mic .perm-status").classList.add("granted");
 
       // Animate mic bars
@@ -103,11 +103,11 @@
             lng: position.coords.longitude,
             accuracy: position.coords.accuracy
           };
-          $("#perm-location .perm-status").textContent = "✅";
+          $("#perm-location .perm-status").textContent = "OK";
           $("#perm-location .perm-status").classList.add("granted");
 
           // Enable start button
-          $("#perm-fullscreen .perm-status").textContent = "✅";
+          $("#perm-fullscreen .perm-status").textContent = "OK";
           $("#perm-fullscreen .perm-status").classList.add("granted");
           $("#start-exam-btn").disabled = false;
           $("#enable-media-btn").style.display = "none";
@@ -430,10 +430,10 @@
     const flagBtn = $("#flag-btn");
     if (state.flagged.has(index)) {
       flagBtn.classList.add("flagged");
-      flagBtn.querySelector("span").textContent = "🚩 Unflag";
+      flagBtn.querySelector("span").textContent = "Unflag";
     } else {
       flagBtn.classList.remove("flagged");
-      flagBtn.querySelector("span").textContent = "🚩 Flag for Review";
+      flagBtn.querySelector("span").textContent = "Flag for Review";
     }
 
     updateQuestionGrid();
