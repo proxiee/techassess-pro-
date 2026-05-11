@@ -196,6 +196,7 @@
                       <span>📧 ${escapeHtml(exam.candidate.email)}</span>
                       <span>🆔 ${escapeHtml(exam.candidate.id)}</span>
                       <span>📅 ${formatDate(exam.startTime)}</span>
+                      ${exam.location ? `<span>📍 ${exam.location.lat.toFixed(4)}, ${exam.location.lng.toFixed(4)}</span>` : ""}
                     </div>
                   </div>
                   <span class="exam-badge ${badgeClass}">${badgeText}</span>
@@ -267,6 +268,7 @@
               <tr><td style="color:var(--text-muted)">Name</td><td>${escapeHtml(exam.candidate.name)}</td></tr>
               <tr><td style="color:var(--text-muted)">Email</td><td>${escapeHtml(exam.candidate.email)}</td></tr>
               <tr><td style="color:var(--text-muted)">Candidate ID</td><td>${escapeHtml(exam.candidate.id)}</td></tr>
+              ${exam.location ? `<tr><td style="color:var(--text-muted)">Location</td><td><a href="https://www.google.com/maps?q=${exam.location.lat},${exam.location.lng}" target="_blank" style="color:var(--accent-light)">${exam.location.lat}, ${exam.location.lng}</a> (Accuracy: ${Math.round(exam.location.accuracy)}m)</td></tr>` : ""}
               <tr><td style="color:var(--text-muted)">Start Time</td><td>${formatDate(exam.startTime)}</td></tr>
               <tr><td style="color:var(--text-muted)">Duration</td><td>${exam.duration}</td></tr>
               <tr><td style="color:var(--text-muted)">MCQ Score</td><td style="color:${scorePercent >= 70 ? "var(--success)" : "var(--danger)"}">${exam.mcqScore}/${exam.mcqTotal} (${scorePercent}%)</td></tr>
