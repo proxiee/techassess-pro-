@@ -21,7 +21,8 @@
     examStartTime: null,
     examEndTime: null,
     submitted: false,
-    allQuestions: []      // merged: programming first, then MCQ
+    allQuestions: [],      // merged: programming first, then MCQ
+    location: null
   };
 
   // ── Question order: Programming first, then MCQs ────────
@@ -94,11 +95,28 @@
       // Animate mic bars
       startMicVisualization();
 
-      // Enable start button
-      $("#perm-fullscreen .perm-status").textContent = "✅";
-      $("#perm-fullscreen .perm-status").classList.add("granted");
-      $("#start-exam-btn").disabled = false;
-      $("#enable-media-btn").style.display = "none";
+      // Request Location
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          state.location = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            accuracy: position.coords.accuracy
+          };
+          $("#perm-location .perm-status").textContent = "✅";
+          $("#perm-location .perm-status").classList.add("granted");
+
+          // Enable start button
+          $("#perm-fullscreen .perm-status").textContent = "✅";
+          $("#perm-fullscreen .perm-status").classList.add("granted");
+          $("#start-exam-btn").disabled = false;
+          $("#enable-media-btn").style.display = "none";
+        },
+        (err) => {
+          alert("Location access is required for this exam.\nPlease allow location permissions and try again.");
+        },
+        { enableHighAccuracy: true }
+      );
     } catch (err) {
       alert(
         "Camera/Microphone access is required for this exam.\nPlease allow permissions and try again.\n\nError: " +
@@ -545,6 +563,7 @@
         message: w.message,
       })),
       answers: answerData,
+      location: state.location,
       hasRecording: recordingBlob && recordingBlob.size > 0,
     };
 
