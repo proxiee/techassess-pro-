@@ -3,154 +3,389 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TechAssess Pro — Professional online assessment platform for senior full-stack developers.">
-  <title>TechAssess Pro — Senior Full-Stack Developer Assessment</title>
+  <meta name="description" content="TechAssess Pro — The assessment window has closed.">
+  <title>TechAssess Pro — Assessment Window Closed</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-primary: #0a0e1a;
+      --bg-card: rgba(255, 255, 255, 0.04);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --text-primary: #e8eaf0;
+      --text-secondary: #8a8fa8;
+      --text-muted: #5a5f78;
+      --accent-red: #ef4444;
+      --accent-red-glow: rgba(239, 68, 68, 0.25);
+      --accent-amber: #f59e0b;
+      --accent-amber-glow: rgba(245, 158, 11, 0.15);
+      --accent-blue: #6366f1;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── Animated Background ─────────────────────────── */
+    .bg-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .grid-overlay {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      animation: orbFloat 12s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(239, 68, 68, 0.12), transparent 70%);
+      top: -15%; left: -10%;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.1), transparent 70%);
+      bottom: -10%; right: -5%;
+      animation-delay: -4s;
+    }
+
+    .orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.08), transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: -8s;
+    }
+
+    @keyframes orbFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 15px) scale(0.95); }
+    }
+
+    /* ── Main Container ──────────────────────────────── */
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 580px;
+      padding: 24px;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Brand ───────────────────────────────────────── */
+    .brand {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .brand-logo {
+      width: 52px; height: 52px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-amber));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 30px rgba(239, 68, 68, 0.2);
+      position: relative;
+    }
+
+    .brand-logo::after {
+      content: '';
+      width: 22px; height: 22px;
+      border: 3px solid white;
+      border-radius: 4px;
+      transform: rotate(45deg);
+    }
+
+    .brand-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-name span {
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-amber));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Card ─────────────────────────────────────────── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 40px 36px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      text-align: center;
+    }
+
+    /* ── Expired Icon ─────────────────────────────────── */
+    .expired-icon {
+      width: 88px; height: 88px;
+      margin: 0 auto 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(245, 158, 11, 0.08));
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 var(--accent-red-glow); }
+      50% { box-shadow: 0 0 40px 10px var(--accent-red-glow); }
+    }
+
+    .expired-icon svg {
+      color: var(--accent-red);
+    }
+
+    /* Clock hands animation */
+    .clock-hand-minute {
+      transform-origin: center;
+      animation: spinClock 4s linear infinite;
+    }
+
+    @keyframes spinClock {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* ── Typography ───────────────────────────────────── */
+    .card h2 {
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+      background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card .subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ── Info Blocks ──────────────────────────────────── */
+    .info-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .info-block {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: left;
+    }
+
+    .info-block .icon-wrap {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon-wrap.red {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--accent-red);
+    }
+
+    .icon-wrap.amber {
+      background: var(--accent-amber-glow);
+      color: var(--accent-amber);
+    }
+
+    .icon-wrap.blue {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--accent-blue);
+    }
+
+    .info-block .info-text strong {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .info-block .info-text small {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ── Divider ──────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-glass), transparent);
+      margin-bottom: 28px;
+    }
+
+    /* ── Contact Section ─────────────────────────────── */
+    .contact-section p {
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .contact-section a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    .contact-section a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    .footer-text {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
+    /* ── Responsive ───────────────────────────────────── */
+    @media (max-width: 600px) {
+      .card {
+        padding: 28px 20px;
+      }
+      .card h2 {
+        font-size: 1.35rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- LANDING SCREEN -->
-  <section id="landing-screen" class="screen active">
-    <div class="landing-bg">
-      <div class="grid-overlay"></div>
-      <div class="gradient-orb orb-1"></div>
-      <div class="gradient-orb orb-2"></div>
-      <div class="gradient-orb orb-3"></div>
-    </div>
-    <div class="landing-content">
-      <div class="brand">
-        <div class="brand-logo" id="brand-logo-main"></div>
-        <h1 class="brand-name">TechAssess <span>Pro</span></h1>
-        <p class="brand-tagline">Senior Full-Stack Developer Assessment</p>
-      </div>
-      <div class="registration-card glass-card">
-        <div class="card-header">
-          <h2>Welcome, Candidate</h2>
-          <p>Please enter your details to begin the assessment</p>
-        </div>
-        <form id="registration-form" autocomplete="off">
-          <div class="form-group">
-            <label for="candidate-name">Full Name</label>
-            <input type="text" id="candidate-name" placeholder="Enter your full name" required>
-          </div>
-          <div class="form-group">
-            <label for="candidate-email">Email Address</label>
-            <input type="email" id="candidate-email" placeholder="your.email@company.com" required>
-          </div>
-          <div class="form-group">
-            <label for="candidate-id">Candidate ID</label>
-            <input type="text" id="candidate-id" placeholder="e.g., FS-2026-0042" required>
-          </div>
-          <div class="exam-info-grid">
-            <div class="info-item"><div><strong>32 Questions</strong><small>30 MCQ + 2 Coding</small></div></div>
-            <div class="info-item"><div><strong>90 Minutes</strong><small>Timed assessment</small></div></div>
-          </div>
-          <button type="submit" id="start-btn" class="btn-primary">
-            <span>Proceed to Verification</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
-        </form>
-      </div>
-      <p class="footer-text">By proceeding, you agree to our proctoring terms and conditions.</p>
-    </div>
-  </section>
 
-  <!-- PROCTORING SETUP SCREEN -->
-  <section id="proctor-screen" class="screen">
-    <div class="landing-bg"><div class="grid-overlay"></div><div class="gradient-orb orb-1"></div><div class="gradient-orb orb-2"></div></div>
-    <div class="proctor-content">
-      <div class="proctor-card glass-card">
-        <h2>Proctoring Setup</h2>
-        <p class="proctor-subtitle">We need access to your camera and microphone to monitor the exam session.</p>
-        <div class="media-preview">
-          <video id="proctor-video" autoplay playsinline muted></video>
-          <div id="video-placeholder" class="video-placeholder">
-            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-            <p>Camera preview will appear here</p>
+  <!-- Animated Background -->
+  <div class="bg-layer">
+    <div class="grid-overlay"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="container">
+    <!-- Brand -->
+    <div class="brand">
+      <div class="brand-logo"></div>
+      <h1 class="brand-name">TechAssess <span>Pro</span></h1>
+    </div>
+
+    <!-- Main Card -->
+    <div class="card">
+      <!-- Animated Clock Icon -->
+      <div class="expired-icon">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12" class="clock-hand-minute"/>
+          <polyline points="12 12 16 14"/>
+          <line x1="4" y1="4" x2="20" y2="20" stroke-width="2"/>
+        </svg>
+      </div>
+
+      <h2>Assessment Window Closed</h2>
+      <p class="subtitle">
+        The scheduled window for this assessment has ended. Unfortunately, submissions are no longer being accepted for this session.
+      </p>
+
+      <!-- Info Blocks -->
+      <div class="info-blocks">
+        <div class="info-block">
+          <div class="icon-wrap red">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
           </div>
-          <div id="mic-indicator" class="mic-indicator">
-            <div class="mic-bar"></div><div class="mic-bar"></div><div class="mic-bar"></div><div class="mic-bar"></div><div class="mic-bar"></div>
+          <div class="info-text">
+            <strong>Time Expired</strong>
+            <small>The exam link is no longer active. All candidate sessions for this assessment cycle have been finalized.</small>
           </div>
         </div>
-        <div class="permission-checklist">
-          <div class="perm-item" id="perm-camera"><span class="perm-status pending"></span><span>Camera Access</span></div>
-          <div class="perm-item" id="perm-mic"><span class="perm-status pending"></span><span>Microphone Access</span></div>
-          <div class="perm-item" id="perm-location"><span class="perm-status pending"></span><span>Location Access</span></div>
-          <div class="perm-item" id="perm-fullscreen"><span class="perm-status pending"></span><span>Fullscreen Mode</span></div>
-        </div>
-        <div class="proctor-actions">
-          <button id="enable-media-btn" class="btn-primary"><span>Enable Camera, Mic &amp; Location</span></button>
-          <button id="start-exam-btn" class="btn-primary btn-success" disabled><span>Start Exam</span></button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- EXAM SCREEN -->
-  <section id="exam-screen" class="screen">
-    <header class="exam-header">
-      <div class="header-left">
-        <div class="brand-mini"><span>TechAssess Pro</span></div>
-      </div>
-      <div class="header-center">
-        <div id="exam-timer" class="timer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          <span id="timer-display">90:00</span>
+        <div class="info-block">
+          <div class="icon-wrap amber">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="info-text">
+            <strong>Missed Your Window?</strong>
+            <small>If you were unable to start the exam during the allotted timeframe, please contact the assessment coordinator immediately.</small>
+          </div>
         </div>
-      </div>
-      <div class="header-right">
-        <div class="proctor-live"><div class="live-dot"></div><span>Proctored</span><video id="mini-camera" autoplay playsinline muted></video></div>
-        <div class="warning-badge" id="warning-badge" style="display:none;"><span><span id="warning-count">0</span> Warnings</span></div>
-      </div>
-    </header>
-    <div class="exam-body">
-      <aside class="exam-sidebar" id="exam-sidebar">
-        <div class="sidebar-header"><h3>Questions</h3><div class="progress-info"><span id="answered-count">0</span>/<span id="total-count">32</span> answered</div></div>
-        <div class="question-grid" id="question-grid"></div>
-        <div class="sidebar-legend">
-          <div class="legend-item"><span class="dot dot-current"></span> Current</div>
-          <div class="legend-item"><span class="dot dot-answered"></span> Answered</div>
-          <div class="legend-item"><span class="dot dot-flagged"></span> Flagged</div>
-          <div class="legend-item"><span class="dot dot-unanswered"></span> Not visited</div>
-        </div>
-      </aside>
-      <main class="question-area" id="question-area"></main>
-    </div>
-    <footer class="exam-footer">
-      <button id="prev-btn" class="btn-secondary" disabled><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Previous</button>
-      <div class="footer-center"><button id="flag-btn" class="btn-flag"><span>Flag for Review</span></button></div>
-      <button id="next-btn" class="btn-secondary">Next <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-    </footer>
-    <div id="submit-modal" class="modal-overlay" style="display:none;">
-      <div class="modal glass-card">
-        <h2>Submit Assessment?</h2>
-        <div class="submit-summary" id="submit-summary"></div>
-        <div class="modal-actions">
-          <button id="cancel-submit" class="btn-secondary">Continue Exam</button>
-          <button id="confirm-submit" class="btn-primary btn-danger">Submit Now</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- RESULTS SCREEN -->
-  <section id="results-screen" class="screen">
-    <div class="landing-bg"><div class="grid-overlay"></div><div class="gradient-orb orb-1"></div><div class="gradient-orb orb-2"></div></div>
-    <div class="results-content">
-      <div class="results-card glass-card">
-        <div class="results-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></div>
-        <h2>Assessment Submitted</h2>
-        <p class="results-subtitle">Thank you for completing the assessment. Your responses have been recorded.</p>
-        <div class="results-notice">
-          <p>Your results will be reviewed by the assessment team. You will receive an email notification with further instructions.</p>
+        <div class="info-block">
+          <div class="icon-wrap blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div class="info-text">
+            <strong>Need a Reschedule?</strong>
+            <small>Reach out to your recruiter or HR contact to request a new assessment window if applicable.</small>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <script src="questions.js"></script>
-  <script src="app.js"></script>
+      <div class="divider"></div>
+
+      <!-- Contact -->
+      <div class="contact-section">
+        <p>For any questions or concerns, please email<br>
+          <a href="mailto:assessments@techassess.pro">assessments@techassess.pro</a>
+        </p>
+      </div>
+    </div>
+
+    <p class="footer-text">&copy; 2026 TechAssess Pro. All rights reserved.</p>
+  </div>
+
 </body>
 </html>

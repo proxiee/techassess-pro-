@@ -176,14 +176,15 @@ app.delete("/api/exams/:id", (req, res) => {
 // ── Start Server ──────────────────────────────────────────
 app.listen(PORT, () => {
   console.log("");
-  console.log("  ╔══════════════════════════════════════════════╗");
-  console.log("  ║     TechAssess Pro — Server Running          ║");
-  console.log("  ╠══════════════════════════════════════════════╣");
-  console.log(`  ║  Exam:    http://localhost:${PORT}              ║`);
-  console.log(`  ║  Admin:   http://localhost:${PORT}/admin.html   ║`);
-  console.log("  ║                                              ║");
-  console.log("  ║  Recordings saved to: ./uploads/recordings   ║");
-  console.log("  ║  Exam data saved to:  ./uploads/data         ║");
-  console.log("  ╚══════════════════════════════════════════════╝");
+  console.log("  ╔══════════════════════════════════════════════════╗");
+  console.log("  ║       TechAssess Pro — Server Running            ║");
+  console.log("  ╠══════════════════════════════════════════════════╣");
+  console.log(`  ║  Landing:  http://localhost:${PORT}                ║`);
+  console.log(`  ║  Exam:     http://localhost:${PORT}/exam.html      ║`);
+  console.log(`  ║  Admin:    http://localhost:${PORT}/admin.html     ║`);
+  console.log("  ║                                                  ║");
+  console.log("  ║  Recordings saved to: ./uploads/recordings       ║");
+  console.log("  ║  Exam data saved to:  ./uploads/data             ║");
+  console.log("  ╚══════════════════════════════════════════════════╝");
   console.log("");
 });
